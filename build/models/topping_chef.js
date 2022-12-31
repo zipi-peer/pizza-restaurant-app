@@ -10,29 +10,27 @@ var ToppingChef = /** @class */ (function () {
         this.oven = new oven_1.default(new worker_1.default());
         this.QueueOrders = [];
         this.ToppingChefWorker = ToppingChefWorker;
-        this.ListenToEvents();
+        this.listenToEvents();
     }
-    ToppingChef.prototype.ListenToEvents = function () {
+    ToppingChef.prototype.listenToEvents = function () {
         var _this = this;
-        console.log("gooo2");
-        var clearIntervalIfOrdersQueueFinish = setInterval(function () {
+        setInterval(function () {
             if (_this.QueueOrders.length) {
                 for (var index = 0; index < _this.ToppingChefWorker.length; index++) {
                     if (_this.ToppingChefWorker[index].isAvailble && _this.ToppingChefWorker[index].Order == undefined) {
                         _this.ToppingChefWorker[index].isAvailble = false;
                         var order = _this.QueueOrders.shift();
                         if (order) {
-                            _this.MakeTopping(order, index);
+                            _this.makeTopping(order, index);
                         }
                     }
                 }
             }
         }, 1000);
     };
-    ToppingChef.prototype.MakeTopping = function (order, ToppingChefIndex) {
+    ToppingChef.prototype.makeTopping = function (order, ToppingChefIndex) {
         var _this = this;
         setTimeout(function () {
-            console.log(order, ToppingChefIndex);
             _this.oven.QueueOrders.push(order);
             _this.ToppingChefWorker[ToppingChefIndex ? ToppingChefIndex : 0].isAvailble = true;
         }, (order.Topping.length / 2 == 0 ? (order.Topping.length / 2) * 4000 : ((order.Topping.length / 2) * 4000) + 2000));

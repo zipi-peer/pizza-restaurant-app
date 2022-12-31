@@ -11,27 +11,25 @@ var Oven = /** @class */ (function () {
         this.servingChef = new serving_1.default([new worker_1.default(), new worker_1.default()]);
         this.QueueOrders = [];
         this.OvenWorker = OvenWorker;
-        this.ListenToEvents();
+        this.listenToEvents();
     }
-    Oven.prototype.ListenToEvents = function () {
+    Oven.prototype.listenToEvents = function () {
         var _this = this;
-        console.log("gooo3");
         setInterval(function () {
             if (_this.QueueOrders.length) {
                 if (_this.OvenWorker.isAvailble && _this.OvenWorker.Order == undefined) {
                     _this.OvenWorker.isAvailble = false;
                     var order = _this.QueueOrders.shift();
                     if (order) {
-                        _this.MakeDought(order);
+                        _this.makeOven(order);
                     }
                 }
             }
         }, 1000);
     };
-    Oven.prototype.MakeDought = function (order) {
+    Oven.prototype.makeOven = function (order) {
         var _this = this;
         setTimeout(function () {
-            console.log(order);
             _this.servingChef.QueueOrders.push(order);
             _this.OvenWorker.isAvailble = true;
         }, this.ExecutionTime);

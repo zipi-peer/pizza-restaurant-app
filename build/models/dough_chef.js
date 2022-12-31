@@ -11,11 +11,10 @@ var DoughChef = /** @class */ (function () {
         this.toppingChef = new topping_chef_1.default([new worker_1.default(), new worker_1.default(), new worker_1.default()]);
         this.QueueOrders = queueOrders;
         this.DoughChefWorker = DoughChefWorker;
-        this.ListenToEvents();
+        this.listenToEvents();
     }
-    DoughChef.prototype.ListenToEvents = function () {
+    DoughChef.prototype.listenToEvents = function () {
         var _this = this;
-        console.log("gooo1");
         var clearIntervalIfOrdersQueueFinish = setInterval(function () {
             if (_this.QueueOrders.length) {
                 for (var index = 0; index < _this.DoughChefWorker.length; index++) {
@@ -27,7 +26,7 @@ var DoughChef = /** @class */ (function () {
                         }
                         if (order) {
                             order.StartDate = new Date();
-                            _this.MakeDought(order, index);
+                            _this.makeDought(order, index);
                         }
                     }
                 }
@@ -37,7 +36,7 @@ var DoughChef = /** @class */ (function () {
             }
         }, 1000);
     };
-    DoughChef.prototype.MakeDought = function (order, DoughChefIndex) {
+    DoughChef.prototype.makeDought = function (order, DoughChefIndex) {
         var _this = this;
         setTimeout(function () {
             console.log(order, DoughChefIndex);

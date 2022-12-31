@@ -6,11 +6,10 @@ var Serving = /** @class */ (function () {
         this.QueueOrders = [];
         this.ServingWorker = ServingWorker;
         this.CountOrders = 0;
-        this.ListenToEvents();
+        this.listenToEvents();
     }
-    Serving.prototype.ListenToEvents = function () {
+    Serving.prototype.listenToEvents = function () {
         var _this = this;
-        console.log("gooo4");
         var clearIntervalIfOrdersQueueFinish = setInterval(function () {
             if (_this.QueueOrders.length) {
                 for (var index = 0; index < _this.ServingWorker.length; index++) {
@@ -23,10 +22,9 @@ var Serving = /** @class */ (function () {
                                 _this.StartBacking = order.StartDate;
                                 _this.OrdersLength = order.OrderLength;
                             }
-                            _this.MakeDought(order, index);
+                            _this.makeServing(order, index);
                         }
                         if (_this.OrdersLength == _this.CountOrders) {
-                            console.log("comeee");
                             clearInterval(clearIntervalIfOrdersQueueFinish);
                         }
                     }
@@ -34,10 +32,9 @@ var Serving = /** @class */ (function () {
             }
         }, 1000);
     };
-    Serving.prototype.MakeDought = function (order, ServingIndex) {
+    Serving.prototype.makeServing = function (order, ServingIndex) {
         var _this = this;
         setTimeout(function () {
-            console.log(order, ServingIndex);
             _this.ServingWorker[ServingIndex].isAvailble = true;
             console.log("Order " + order.Id + "start in- " + (order === null || order === void 0 ? void 0 : order.StartDate) + "end in" + new Date());
             if (_this.OrdersLength == _this.CountOrders)

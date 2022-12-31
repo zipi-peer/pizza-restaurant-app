@@ -8,8 +8,7 @@ var dough_chef_1 = __importDefault(require("./models/dough_chef"));
 var order_1 = __importDefault(require("./models/order"));
 var worker_1 = __importDefault(require("./models/worker"));
 function Start() {
-    console.log("hereeeee");
-    var doughChef = new dough_chef_1.default([new order_1.default(1, ["zit", "batzal"]), new order_1.default(2, ["ss", "gg"])], [new worker_1.default(), new worker_1.default()]);
+    var doughChef = new dough_chef_1.default([new order_1.default(1, ["cheese", "olives"]), new order_1.default(2, ["cheese", "olives", "Onion"])], [new worker_1.default(), new worker_1.default()]);
     return;
 }
 exports.Start = Start;
